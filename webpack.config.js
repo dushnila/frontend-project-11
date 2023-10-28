@@ -11,7 +11,7 @@ const outputPath = path.resolve(dirname, 'dist');
 const config = {
   entry: './src/index.js',
   output: {
-    path: outputPath,
+    clean: true,
   },
   devServer: {
     open: true,
