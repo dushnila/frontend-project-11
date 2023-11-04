@@ -1,7 +1,20 @@
+/* eslint-disable import/extensions */
 import './styles.scss';
 import 'bootstrap';
 import onChange from 'on-change';
 import * as yup from 'yup';
+import i18next from 'i18next';
+import rus from './locales/mixed.js';
+
+i18next.init({
+  debug: true,
+  lng: 'ru',
+  resources: {
+    ru: {
+      translation: rus,
+    },
+  },
+});
 
 const urlForm = document.getElementById('url-input');
 
@@ -16,22 +29,22 @@ const render = (__path, value) => {
   if (value === 'valid') {
     feedback.classList.remove('text-danger');
     feedback.classList.add('text-success');
-    feedback.textContent = 'RSS успешно загружен';
+    feedback.textContent = i18next.t('feedback.success');
   }
   if (value === 'wrong_format') {
     feedback.classList.remove('text-success');
     feedback.classList.add('text-danger');
-    feedback.textContent = 'Ресурс не содержит валидный RSS';
+    feedback.textContent = i18next.t('feedback.badformat');
   }
   if (value === 'wrong_url') {
     feedback.classList.remove('text-success');
     feedback.classList.add('text-danger');
-    feedback.textContent = 'Ссылка должна быть валидным URL';
+    feedback.textContent = i18next.t('feedback.badurl');
   }
   if (value === 'double_url') {
     feedback.classList.remove('text-success');
     feedback.classList.add('text-danger');
-    feedback.textContent = 'RSS уже существует';
+    feedback.textContent = i18next.t('feedback.double');
   }
 };
 
